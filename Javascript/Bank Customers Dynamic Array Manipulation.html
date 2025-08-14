@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Customers Management</title>
+</head>
+<body>
+    <h1>Bank Customers Management</h1>
+    <button onclick="manageCustomers()">Start Management</button>
+
+    <script>
+        function manageCustomers() {
+            let num = parseInt(prompt("How many customers to register?"));
+            if (isNaN(num) || num <= 0) {
+                alert("Invalid number of customers!");
+                return;
+            }
+
+            let customers = [];
+
+            // Step 1: Register customers
+            for (let i = 0; i < num; i++) {
+                let name = prompt(`Enter name for Customer ${i + 1}:`);
+                customers.push(name);
+            }
+
+            let output = "";
+
+            // Step 2: Display using for...of
+            output += "Customers using for...of:\n";
+            for (let cust of customers) {
+                output += cust + "\n";
+            }
+
+            // Step 3: Display IDs using for...in
+            output += "\nCustomer IDs using for...in:\n";
+            for (let id in customers) {
+                output += id + "\n";
+            }
+
+            // Step 4: Add new customer
+            customers.push("Anita");
+            output += `\nAfter push('Anita'): ${customers.join(", ")}\n`;
+
+            // Step 5: Remove last customer
+            customers.pop();
+            output += `After pop(): ${customers.join(", ")}\n`;
+
+            // Step 6: Insert at position 1
+            customers.splice(1, 0, "Vikram");
+            output += `After insert 'Vikram' at position 1: ${customers.join(", ")}\n`;
+
+            // Step 7: Delete at position 2
+            customers.splice(2, 1);
+            output += `After delete at position 2: ${customers.join(", ")}\n`;
+
+            // Step 8: Final list
+            output += `Final Customers: ${customers.join(", ")}`;
+
+            alert(output);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Game</title>
+    <script>
+        function startQuiz() {
+            // Step 1: Welcome alert
+            alert("Welcome to the Quiz Game!");
+
+            // Step 2: Ask user's name
+            let userName = prompt("What is your name?");
+
+            if (!userName) {
+                alert("You didn't enter your name. Quiz cancelled.");
+                return;
+            }
+
+            // Step 3: Confirmation
+            let ready = confirm(userName + ", are you ready for the quiz?");
+            if (!ready) {
+                alert("Okay, maybe next time!");
+                return;
+            }
+
+            // Step 4: Multiple-choice question
+            let question = prompt(
+                "Which planet is known as the Red Planet?\n" +
+                "a) Earth\nb) Mars\nc) Jupiter"
+            );
+
+            // Step 5: Check answer
+            if (question && question.toLowerCase() === "b" || question.toLowerCase() === "mars") {
+                alert("Correct! Well done, " + userName + "!");
+            } else {
+                alert("Oops! The correct answer is Mars.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Quiz Game</h1>
+    <button onclick="startQuiz()">Start Quiz</button>
+</body>
+</html>

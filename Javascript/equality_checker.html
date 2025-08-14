@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equality & Inequality Checker</title>
+</head>
+<body>
+    <h1>Equality & Inequality Checker</h1>
+
+    <script>
+        // JavaScript code here
+        let val1 = prompt("Enter the first value:");
+        let val2 = prompt("Enter the second value:");
+
+        let type1 = typeof val1;
+        let val2Converted = Number(val2);
+        let type2 = isNaN(val2Converted) ? typeof val2 : "number";
+
+        let output = `First Value: ${val1} (${type1})\n`;
+        output += `Second Value: ${val2} (${type2})\n\n`;
+
+        output += `Using == : ${val1 == val2} → Equality ignores type\n`;
+        output += `Using === : ${val1 === val2} → Strict equality checks type too\n`;
+        output += `Using != : ${val1 != val2} → Inequality ignores type\n`;
+        output += `Using !== : ${val1 !== val2} → Strict inequality checks type too\n`;
+
+        alert(output);
+    </script>
+</body>
+</html>

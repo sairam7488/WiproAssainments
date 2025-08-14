@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Switchboard Control</title>
+</head>
+<body>
+    <h1>Switchboard Control</h1>
+    <button onclick="controlSwitchboard()">Run Switchboard</button>
+
+    <pre id="output"></pre>
+
+    <script>
+        function controlSwitchboard() {
+            const buildingName = "Sunrise Apartments"; // constant
+            let status = "OFF"; // will toggle ON/OFF
+            let outputText = "";
+
+            // Devices to control
+            const devices = ["Light", "Fan", "AC"];
+
+            // Loop using var so we can check its scope
+            for (var i = 0; i < devices.length; i++) {
+                // Toggle status
+                status = (status === "OFF") ? "ON" : "OFF";
+                outputText += `Checking Switch ${i + 1}: ${devices[i]} is ${status}\n`;
+            }
+
+            // Show building message
+            outputText += `All switches checked for ${buildingName}.\n`;
+
+            // var is still accessible outside the loop
+            outputText += `Outside loop: var counter is ${i}`;
+
+            // Try reassigning const (will cause error in console)
+            try {
+                // Uncomment next line to see error
+                // buildingName = "New Building";
+            } catch (error) {
+                console.error("Error: Cannot reassign const variable buildingName");
+            }
+
+            document.getElementById("output").textContent = outputText;
+        }
+    </script>
+</body>
+</html>

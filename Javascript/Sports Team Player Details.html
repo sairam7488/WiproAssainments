@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports Team Player Details</title>
+</head>
+<body>
+    <h1>Sports Team Player Details</h1>
+    <button onclick="showPlayers()">Show Player Info</button>
+
+    <pre id="output"></pre>
+
+    <script>
+        function showPlayers() {
+            // First player object
+            const player1 = {
+                name: "Virat Kohli",
+                age: 36,
+                sport: "Cricket",
+                stats: {
+                    matches: 500,
+                    runs: 25000,
+                    average: 57.2
+                }
+            };
+
+            // Second player object
+            const player2 = {
+                name: "Lionel Messi",
+                age: 38,
+                sport: "Football",
+                stats: {
+                    matches: 800,
+                    goals: 720,
+                    assists: 300
+                }
+            };
+
+            // Array of players
+            const players = [player1, player2];
+
+            // Destructure first player
+            const { name, sport, stats: { matches, runs, average } } = player1;
+
+            let outputText = `Player ${name} plays ${sport}.\n` +
+                `Matches: ${matches} | Runs: ${runs} | Batting Average: ${average}\n\n`;
+
+            // Array destructuring to get both players
+            const [p1, p2] = players;
+
+            // Display first player info
+            outputText += `Player ${p1.name} plays ${p1.sport}.\n` +
+                (p1.sport === "Cricket"
+                    ? `Matches: ${p1.stats.matches} | Runs: ${p1.stats.runs} | Batting Average: ${p1.stats.average}\n\n`
+                    : "");
+
+            // Display second player info
+            outputText += `Player ${p2.name} plays ${p2.sport}.\n` +
+                (p2.sport === "Football"
+                    ? `Matches: ${p2.stats.matches} | Goals: ${p2.stats.goals} | Assists: ${p2.stats.assists}`
+                    : "");
+
+            document.getElementById("output").textContent = outputText;
+        }
+    </script>
+</body>
+</html>

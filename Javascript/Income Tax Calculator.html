@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income Tax Calculator</title>
+    <script>
+        function calculateTax() {
+            let name = prompt("Enter your Full Name:");
+            let pan = prompt("Enter your PAN Number (10 characters, uppercase):");
+            let dobInput = prompt("Enter your Date of Birth (YYYY-MM-DD):");
+            let income = parseFloat(prompt("Enter your Annual Income (₹):"));
+
+            // PAN validation
+            if (!pan || pan.length !== 10 || pan !== pan.toUpperCase()) {
+                alert("Invalid PAN format! Must be 10 uppercase characters.");
+                return;
+            }
+
+            // Date and Age calculation
+            let dob = new Date(dobInput);
+            if (isNaN(dob.getTime())) {
+                alert("Invalid date format!");
+                return;
+            }
+            let today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            if (
+                today.getMonth() < dob.getMonth() ||
+                (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())
+            ) {
+                age--;
+            }
+
+            // Tax calculation
+            let tax = 0;
+            if (income <= 250000) {
+                tax = 0;
+            } else if (income <= 500000) {
+                tax = 0.05 * income;
+            } else if (income <= 1000000) {
+                tax = 0.2 * income;
+            } else {
+                tax = 0.3 * income;
+            }
+
+            tax = Math.round(tax); // Round to nearest rupee
+
+            // Display result
+            let output =
+                "Name: " + name + "\n" +
+                "PAN: " + pan + "\n" +
+                "Age: " + age + " years\n" +
+                "Annual Income: ₹" + income + "\n" +
+                "Calculated Tax: ₹" + tax;
+
+            alert(output);
+        }
+    </script>
+</head>
+<body>
+    <h1>Income Tax Calculator</h1>
+    <button onclick="calculateTax()">Calculate Tax</button>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income Tax Calculator with Multiple Callbacks</title>
+</head>
+<body>
+    <h1>Income Tax Calculator (Multiple Callbacks)</h1>
+    <button onclick="startTaxCalculation()">Calculate Tax</button>
+
+    <pre id="output"></pre>
+
+    <script>
+        // JSON array to store tax records
+        let taxRecords = [];
+
+        function calculateTax(name, pan, income, callback) {
+            let tax = 0;
+
+            if (income <= 250000) tax = 0;
+            else if (income <= 500000) tax = 0.05 * income;
+            else if (income <= 1000000) tax = 0.2 * income;
+            else tax = 0.3 * income;
+
+            tax = Math.round(tax);
+
+            callback(name, pan, income, tax);
+        }
+
+        function logToConsole(name, pan, income, tax) {
+            console.log(`Name: ${name}, PAN: ${pan}, Income: ₹${income}, Tax: ₹${tax}`);
+        }
+
+        function displayOnPage(name, pan, income, tax) {
+            let text = `Name: ${name}\nPAN: ${pan}\nIncome: ₹${income}\nTax: ₹${tax}`;
+            document.getElementById("output").textContent = text;
+        }
+
+        function saveToRecords(name, pan, income, tax) {
+            taxRecords.push({ name, pan, income, tax });
+            console.log("Tax Records:", taxRecords);
+        }
+
+        function startTaxCalculation() {
+            let name = prompt("Enter your Name:");
+            let pan = prompt("Enter your PAN Number (10 chars, uppercase):");
+            let income = parseFloat(prompt("Enter your Annual Income (₹):"));
+
+            if (!name || !pan || pan.length !== 10 || isNaN(income)) {
+                alert("Invalid input! Please try again.");
+                return;
+            }
+
+            calculateTax(name, pan, income, function(n, p, i, t) {
+                logToConsole(n, p, i, t);
+                displayOnPage(n, p, i, t);
+                saveToRecords(n, p, i, t);
+            });
+        }
+    </script>
+</body>
+</html>

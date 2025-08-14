@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tour Booking Form</title>
+</head>
+<body>
+    <h1>Tour Booking Form</h1>
+
+    <form id="tourForm">
+        <label>Full Name:</label>
+        <input type="text" id="name"><br><br>
+
+        <label>Email:</label>
+        <input type="email" id="email"><br><br>
+
+        <label>Destination:</label>
+        <select id="destination">
+            <option value="Ooty">Ooty</option>
+            <option value="Goa">Goa</option>
+            <option value="Manali">Manali</option>
+        </select><br><br>
+
+        <label>Number of Days:</label>
+        <input type="number" id="days"><br><br>
+
+        <label>Number of Travelers:</label>
+        <input type="number" id="travelers"><br><br>
+
+        <button type="button" onclick="bookTour()">Book Now</button>
+    </form>
+
+    <h2>Booking Summary:</h2>
+    <pre id="summary"></pre>
+
+    <script>
+        function bookTour() {
+            // Get values using getElementById
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let destination = document.getElementById("destination").value;
+            let days = parseInt(document.getElementById("days").value);
+            let travelers = parseInt(document.getElementById("travelers").value);
+
+            // Price per day per person
+            let prices = { Ooty: 2000, Goa: 3000, Manali: 4000 };
+
+            if (!name || !email || !days || !travelers) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            // Calculate total price
+            let totalPrice = prices[destination] * days * travelers;
+
+            // Display summary
+            let summaryText =
+                `Name: ${name}\nEmail: ${email}\nDestination: ${destination}\n` +
+                `Days: ${days}\nTravelers: ${travelers}\nTotal Price: ₹${totalPrice}`;
+
+            document.getElementById("summary").textContent = summaryText;
+        }
+    </script>
+</body>
+</html>
